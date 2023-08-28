@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>what3words.dotnet.wrapper</name>
+    </assembly>
+    <members>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetNResults(System.Int32)">
+             <summary>Set the number of AutoSuggest results to return. A maximum of 100 results can be specified, if a number greater than this is requested,
+             this will be truncated to the maximum. The default is 3</summary>
+            
+             <param name="n">the number of AutoSuggest results to return</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance suitable for invoking a autosuggest API request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetNFocusResults(System.Int32)">
+             <summary>Specifies the number of results (must be &lt;= nResults) within the results set which will have a focus. Defaults to nResults.
+             This allows you to run autosuggest with a mix of focussed and unfocussed results, to give you a "blend" of the two. This is exactly what the old V2
+             standardblend did, and standardblend behaviour can easily be replicated by passing nFocusResults=1,
+             which will return just one focussed result and the rest unfocussed.</summary>
+            
+             <param name="n">number of results within the results set which will have a focus</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetInputType(AutosuggestInputType)">
+            <summary>For power users, used to specify voice input mode. Can be <see cref="F:AutosuggestInputType.TEXT"/> (default), <see cref="F:AutosuggestInputType.VOCON_HYBRID"/>
+            or <see cref="F:AutosuggestInputType.NMDP_ASR"/>. See voice recognition section within the developer docs for more details https://docs.what3words.com/api/v3/#voice.
+            </summary>
+            <param name="type">type the AutosuggestInputType</param>
+            <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetFocus(what3words.dotnet.wrapper.models.Coordinates)">
+             <summary>This is a location, specified as a latitude (often where the user making the query is). If specified, the results will be weighted to
+             give preference to those near the focus. For convenience, longitude is allowed to wrap around the 180 line, so 361 is equivalent to 1.</summary>
+            
+             <param name="coordinates">the focus to use</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetLanguage(System.String)">
+             <summary>For normal text input, specifies a fallback language, which will help guide AutoSuggest if the input is particularly messy. If specified,
+             this parameter must be a supported 3 word address language as an ISO 639-1 2 letter code. For voice input (see voice section),
+             language must always be specified.</summary>
+            
+             <param name="language">the fallback language</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetClipToCircle(what3words.dotnet.wrapper.models.Coordinates,System.Double)">
+             <summary>Restrict autosuggest results to a circle, specified by <see cref="T:what3words.dotnet.wrapper.models.Coordinates"/> <paramref name="centre"/> representing the centre of the circle, plus the
+             <paramref name="radius"/> in kilometres. For convenience, longitude is allowed to wrap around 180 degrees. For example 181 is equivalent to -179.</summary>
+            
+             <param name="centre">the centre of the circle</param>
+             <param name="radius">the radius of the circle in kilometres</param> 
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetClipToPolygon(System.Collections.Generic.List{what3words.dotnet.wrapper.models.Coordinates})">
+             <summary>Restrict autosuggest results to a polygon, specified by a collection of <see cref="T:what3words.dotnet.wrapper.models.Coordinates"/>. The polygon should be closed,
+             i.e. the first element should be repeated as the last element; also the list should contain at least 4 entries. The API is currently limited to
+             accepting up to 25 pairs.</summary>
+            
+             <param name="polygon">the polygon to clip results too</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetClipToBoundingBox(what3words.dotnet.wrapper.models.Coordinates,what3words.dotnet.wrapper.models.Coordinates)">
+             <summary>Restrict autosuggest results to a Bounding Box (2 coners, South West and North East.</summary>
+            
+             <param name="southWest">South West corner of the bounding box to clip results too</param>
+             <param name="northEast">North East corner of the bounding box to clip results too</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.request.AutosuggestOptions.SetClipToCountry(System.Collections.Generic.List{System.String})">
+             <summary>
+             Restricts autosuggest to only return results inside the countries specified by comma-separated list of uppercase ISO 3166-1 alpha-2 country codes
+             (for example, to restrict to Belgium and the UK, use ClipToCountry("GB", "BE"). Will also accept lowercase
+             country codes. Entries must be two a-z letters. WARNING: If the two-letter code does not correspond to a country, there is no error: API simply returns no results.
+             </summary>
+            
+             <param name="countryCodes">countries to clip results too</param>
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestOptions"/> instance to continue adding options to your autosuggest request.</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.#ctor(System.String)">
+            <summary>Get a new API manager instance.</summary>
+            
+            <param name="apiKey">Your what3words API key obtained from https://what3words.com/select-plan</param>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.#ctor(System.String,System.String)">
+            <summary>Get a new API manager instance.</summary>
+            
+            <param name="apiKey">Your what3words API key obtained from https://what3words.com/select-plan </param>
+            <param name="endpoint">override the default public API endpoint. </param>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>Get a new API manager instance.</summary>
+            
+            <param name="apiKey">Your what3words API key obtained from https://what3words.com/select-plan </param>
+            <param name="endpoint">override the default public API endpoint. </param>
+            <param name="headers">add any custom HTTP headers to send in each request</param>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.ConvertTo3WA(what3words.dotnet.wrapper.models.Coordinates)">
+             <summary>Convert a latitude and longitude to a 3 word address, in the language of your choice. It also returns country,
+             the bounds of the grid square, a nearest place (such as a local town) and a link to our map site.</summary>
+            
+             <param name="coordinates">the latitude and longitude of the location to convert to 3 word address.</param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.ConvertTo3WARequest"/> instance suitable for invoking a `convert-to-3wa` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.ConvertToCoordinates(System.String)">
+             <summary>Convert a 3 word address to a latitude and longitude. It also returns country, the bounds of the grid square,
+             a nearest place (such as a local town) and a link to our map site.</summary>
+            
+             <param name="words">A 3 word address as a string. It must be three words separated with dots or a Japanese middle dot character (・).
+             Words separated by spaces will be rejected. Optionally, the 3 word address can be prefixed with ///</param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.ConvertToCoordinatesRequest"/> instance suitable for invoking a `available-languages` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.AvailableLanguages">
+             <summary>Retrieves a list all available 3 word address languages, including the ISO 639-1 2 letter code, english name and native name.</summary>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AvailableLanguagesRequest"/> instance suitable for invoking a `convert-to-coordinates` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.GridSection(what3words.dotnet.wrapper.models.Coordinates,what3words.dotnet.wrapper.models.Coordinates)">
+             <summary>Returns a section of the 3m x 3m what3words grid for a bounding box. The bounding box is specified by lat,lng,lat,lng
+             as south,west,north,east.</summary>
+            
+             <param name="southWest"> South West point of the bounding box for which the grid should be returned. The requested box must not exceed 4km
+             from corner to corner. Latitudes must be &gt;= -90 and &lt;= 90, but longitudes are allowed to wrap around 180. To specify a
+             bounding-box that crosses the anti-meridian, use longitude greater than 180.</param>
+             <param name="northEast"> North East point of the bounding box for which the grid should be returned. The requested box must not exceed 4km
+             from corner to corner. Latitudes must be &gt;= -90 and &lt;= 90, but longitudes are allowed to wrap around 180. To specify a
+             bounding-box that crosses the anti-meridian, use longitude greater than 180.</param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.GridSectionRequest"/> instance suitable for invoking a `grid-section` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.Autosuggest(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+             <summary>AutoSuggest can take a slightly incorrect 3 word address, and suggest a list of valid 3 word addresses. It has powerful
+             features which can, for example, optionally limit results to a country or area, and prefer results which are near the user.
+             For full details, please see the complete API documentation at https://docs.what3words.com/api/v3/#autosuggest </summary>
+            
+             <param name="input"> The full or partial 3 word address to obtain suggestions for. At minimum this must be the first two complete
+             words plus at least one character from the third word.</param>
+             <param name="options"> The autosuggest options and clippings, check available options here https://docs.what3words.com/api/v3/#autosuggest </param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestRequest"/> instance suitable for invoking a `autosuggest` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.AutosuggestWithCoordinates(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+             <summary>AutoSuggest can take a slightly incorrect 3 word address, and suggest a list of valid 3 word addresses including coordinates. It has powerful
+             features which can, for example, optionally limit results to a country or area, and prefer results which are near the user.
+             For full details, please see the complete API documentation at https://docs.what3words.com/api/v3/#autosuggest </summary>
+            
+             <param name="input"> The full or partial 3 word address to obtain suggestions for. At minimum this must be the first two complete
+             words plus at least one character from the third word.</param>
+             <param name="options"> The autosuggest options and clippings, check available options here https://docs.what3words.com/api/v3/#autosuggest </param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestWithCoordinatesRequest"/> instance suitable for invoking a `autosuggest-with-coordinates` API request</returns>
+        </member>
+        <member name="M:what3words.dotnet.wrapper.What3WordsV3.AutosuggestSelection(System.String,System.String,System.String,System.Int32,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+             <summary>AutosuggestSelection enables simple reporting for what3words address selections in accounts.what3words.com.
+             It should be called once in conjunction with autosuggest or autosuggest-with-coordinates.
+             when an end user picks a what3words address from the suggestions presented to them.</summary>
+            
+             <param name="rawInput">The full or partial 3 word address used on the autosuggest or autosuggest-with-coordinates call.</param>
+             <param name="sourceApi">The source of the selected autosuggest, can be 'text' or 'voice'.</param>
+             <param name="words">The 3 word address of the selected suggestion.</param>
+             <param name="rank">The rank of the selected suggestion.</param>
+             <param name="options">The autosuggest options used on the autosuggest or autosuggest-with-coordinates call.</param>
+            
+             <returns>a <see cref="T:what3words.dotnet.wrapper.request.AutosuggestSelectionRequest"/> instance suitable for invoking a `autosuggest-selection` API request</returns>
+        </member>
+        <member name="F:AutosuggestInputType.TEXT">
+            Text typed by a user, e.g.'index.home.raf'. Default setting.
+            Expects exactly two dots and no whitespace in the input.
+        </member>
+        <member name="F:AutosuggestInputType.VOCON_HYBRID">
+            JSON from Nuance VoConHybrid.
+            This should only be used with grammars provided by what3words ltd;
+            using other grammars will cause run-time exceptions.
+            Language detection is disabled, so lang must be set for non-English input.
+        </member>
+        <member name="F:AutosuggestInputType.NMDP_ASR">
+            Text from the Nuance server at https://dictation.nuancemobility.net/NMDPAsrCmdServlet/dictation -
+            please contact Nuance before attempting to use this server.
+            Use with text from any other source is unsupported and results may not be as expected.
+            Does not handle text in languages in which words are not separated by spaces, e.g. Chinese.
+            Language detection is disabled, so lang must be set for non-English input.
+        </member>
+        <member name="F:AutosuggestInputType.GENERIC_VOICE">
+            
+            
+            Text output from speech recognition software. E.g. "index home raft".
+            This input type handles spaces between words.
+            Users should not pronounce 'dot' when speaking a 3 word address.
+            Does not handle text in languages in which words are not separated by spaces, e.g. Chinese.
+            Language detection is disabled, so lang must be set.
+        </member>
+        <member name="F:AutosuggestInputType.SPEECHMATICS">
+            Text from Speechmatics voice recognition.
+            Use with text from any other source is unsupported and results may not be as expected.
+            This should only be used with grammars provided by what3words ltd;
+            using other grammars will cause run-time exceptions.
+            Language detection is disabled, so language must be set.
+        </member>
+        <member name="M:Request`1.RequestAsync">
+            <summary> Request API call asynchronously </summary>
+        </member>
+        <member name="T:Refit.Implementation.Generated">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.IW3WRequests">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.IW3WRequests.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.ConvertTo3WA(what3words.dotnet.wrapper.request.ConvertTo3WARequest.ConvertTo3WAOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.ConvertToCoordinates(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.AvailableLanguages">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.GridSection(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.AutoSuggest(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.AutoSuggestWithCoordinates(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.AutoSuggestSelection(System.String,System.String,System.Nullable{System.Int32},System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#ConvertTo3WA(what3words.dotnet.wrapper.request.ConvertTo3WARequest.ConvertTo3WAOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#ConvertToCoordinates(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#AvailableLanguages">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#GridSection(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#AutoSuggest(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#AutoSuggestWithCoordinates(System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.IW3WRequests.IW3WRequests#AutoSuggestSelection(System.String,System.String,System.Nullable{System.Int32},System.String,what3words.dotnet.wrapper.request.AutosuggestOptions)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
